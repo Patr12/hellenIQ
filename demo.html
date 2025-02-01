@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Questionnaire</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container animated-background">
+        <h1 class="text-center my-4 text-dark font-weight-bold">Interview Questionnaire</h1>
+        <form id="interviewForm">
+            <!-- Swali 1 -->
+            <div id="question1" class="question animated-question">
+                <label class="text-dark font-weight-bold">1. How would you describe me to someone else?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="q1Option1" value="Friendly" required>
+                    <label class="form-check-label" for="q1Option1">Friendly</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="q1Option2" value="Hardworking">
+                    <label class="form-check-label" for="q1Option2">Hardworking</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="q1Option3" value="Creative">
+                    <label class="form-check-label" for="q1Option3">Creative</label>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)" disabled>Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(2)">Next</button>
+            </div>
+
+            <!-- Swali 2 -->
+            <div id="question2" class="question animated-question" style="display: none;">
+                <label class="text-dark font-weight-bold">2. What stands out about me?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="q2Option1" value="My communication skills" required>
+                    <label class="form-check-label" for="q2Option1">My communication skills</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="q2Option2" value="My dedication">
+                    <label class="form-check-label" for="q2Option2">My dedication</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="q2Option3" value="My problem-solving ability">
+                    <label class="form-check-label" for="q2Option3">My problem-solving ability</label>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(3)">Next</button>
+            </div>
+
+            <!-- Swali 3 -->
+            <div id="question3" class="question animated-question" style="display: none;">
+                <label class="text-dark font-weight-bold">3. How do I inspire you?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question3" id="q3Option1" value="By being a good leader" required>
+                    <label class="form-check-label" for="q3Option1">By being a good leader</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question3" id="q3Option2" value="By always staying positive">
+                    <label class="form-check-label" for="q3Option2">By always staying positive</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question3" id="q3Option3" value="By helping others">
+                    <label class="form-check-label" for="q3Option3">By helping others</label>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(2)">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(4)">Next</button>
+            </div>
+
+            <!-- Swali 4 -->
+            <div id="question4" class="question animated-question" style="display: none;">
+                <label class="text-dark font-weight-bold">4. What are my strengths?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question4" id="q4Option1" value="Teamwork" required>
+                    <label class="form-check-label" for="q4Option1">Teamwork</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question4" id="q4Option2" value="Time management">
+                    <label class="form-check-label" for="q4Option2">Time management</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question4" id="q4Option3" value="Adaptability">
+                    <label class="form-check-label" for="q4Option3">Adaptability</label>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(3)">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(5)">Next</button>
+            </div>
+
+            <!-- Swali 5 -->
+            <div id="question5" class="question animated-question" style="display: none;">
+                <label class="text-dark font-weight-bold">5. What areas do you think I can improve on?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question5" id="q5Option1" value="Public speaking" required>
+                    <label class="form-check-label" for="q5Option1">Public speaking</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question5" id="q5Option2" value="Technical skills">
+                    <label class="form-check-label" for="q5Option2">Technical skills</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question5" id="q5Option3" value="Delegation">
+                    <label class="form-check-label" for="q5Option3">Delegation</label>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(4)">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="submitForm()">Submit</button>
+            </div>
+        </form>
+
+        <!-- Sehemu ya kuonyesha majibu -->
+        <div id="results" class="mt-4" style="display: none;">
+            <h2 class="text-dark font-weight-bold">Your Answers:</h2>
+            <ul id="answersList"></ul>
+            <button class="btn btn-success" onclick="sendViaEmail()">Send via Email</button>
+            <button class="btn btn-success" onclick="sendViaWhatsApp()">Send via WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Modal ya kumaliza -->
+    <div id="thankYouModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thank You!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for answering. You're welcome!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

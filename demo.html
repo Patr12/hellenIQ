@@ -8,129 +8,269 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container animated-background">
-        <h1 class="text-center my-4 text-dark font-weight-bold">Interview Questionnaire</h1>
+    <!-- Splash Page -->
+    <div id="splashPage" class="splash-page">
+        <div class="splash-content">
+            <h1 class="text-center">Welcome to the Interview Questionnaire</h1>
+            <p class="text-center">Please select your preferred language:</p>
+            <div class="text-center">
+                <button class="btn btn-primary btn-lg" onclick="selectLanguage('en')">English</button>
+                <button class="btn btn-primary btn-lg" onclick="selectLanguage('sw')">Swahili</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Questionnaire -->
+    <div id="mainQuestionnaire" class="container animated-background" style="display: none;">
+        <h1 class="text-center my-4 text-dark font-weight-bold" id="questionnaireTitle">Interview Questionnaire</h1>
         <form id="interviewForm">
             <!-- Swali 1 -->
             <div id="question1" class="question animated-question">
-                <label class="text-dark font-weight-bold">1. How would you describe me to someone else?</label>
+                <label class="text-dark font-weight-bold" id="q1Label">1. How would you describe me to someone else?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question1" id="q1Option1" value="Friendly" required>
-                    <label class="form-check-label" for="q1Option1">Friendly</label>
+                    <label class="form-check-label" for="q1Option1" id="q1Option1Label">Friendly</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question1" id="q1Option2" value="Hardworking">
-                    <label class="form-check-label" for="q1Option2">Hardworking</label>
+                    <label class="form-check-label" for="q1Option2" id="q1Option2Label">Hardworking</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question1" id="q1Option3" value="Creative">
-                    <label class="form-check-label" for="q1Option3">Creative</label>
+                    <label class="form-check-label" for="q1Option3" id="q1Option3Label">Creative</label>
                 </div>
-                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)" disabled>Previous</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(2)">Next</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)" disabled id="prevButton1">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(2)" id="nextButton1">Next</button>
             </div>
 
             <!-- Swali 2 -->
             <div id="question2" class="question animated-question" style="display: none;">
-                <label class="text-dark font-weight-bold">2. What stands out about me?</label>
+                <label class="text-dark font-weight-bold" id="q2Label">2. What stands out about me?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question2" id="q2Option1" value="My communication skills" required>
-                    <label class="form-check-label" for="q2Option1">My communication skills</label>
+                    <label class="form-check-label" for="q2Option1" id="q2Option1Label">My communication skills</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question2" id="q2Option2" value="My dedication">
-                    <label class="form-check-label" for="q2Option2">My dedication</label>
+                    <label class="form-check-label" for="q2Option2" id="q2Option2Label">My dedication</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question2" id="q2Option3" value="My problem-solving ability">
-                    <label class="form-check-label" for="q2Option3">My problem-solving ability</label>
+                    <label class="form-check-label" for="q2Option3" id="q2Option3Label">My problem-solving ability</label>
                 </div>
-                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)">Previous</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(3)">Next</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(1)" id="prevButton2">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(3)" id="nextButton2">Next</button>
             </div>
 
             <!-- Swali 3 -->
             <div id="question3" class="question animated-question" style="display: none;">
-                <label class="text-dark font-weight-bold">3. How do I inspire you?</label>
+                <label class="text-dark font-weight-bold" id="q3Label">3. How do I inspire you?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question3" id="q3Option1" value="By being a good leader" required>
-                    <label class="form-check-label" for="q3Option1">By being a good leader</label>
+                    <label class="form-check-label" for="q3Option1" id="q3Option1Label">By being a good leader</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question3" id="q3Option2" value="By always staying positive">
-                    <label class="form-check-label" for="q3Option2">By always staying positive</label>
+                    <label class="form-check-label" for="q3Option2" id="q3Option2Label">By always staying positive</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question3" id="q3Option3" value="By helping others">
-                    <label class="form-check-label" for="q3Option3">By helping others</label>
+                    <label class="form-check-label" for="q3Option3" id="q3Option3Label">By helping others</label>
                 </div>
-                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(2)">Previous</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(4)">Next</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(2)" id="prevButton3">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(4)" id="nextButton3">Next</button>
             </div>
 
             <!-- Swali 4 -->
             <div id="question4" class="question animated-question" style="display: none;">
-                <label class="text-dark font-weight-bold">4. What are my strengths?</label>
+                <label class="text-dark font-weight-bold" id="q4Label">4. What are my strengths?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question4" id="q4Option1" value="Teamwork" required>
-                    <label class="form-check-label" for="q4Option1">Teamwork</label>
+                    <label class="form-check-label" for="q4Option1" id="q4Option1Label">Teamwork</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question4" id="q4Option2" value="Time management">
-                    <label class="form-check-label" for="q4Option2">Time management</label>
+                    <label class="form-check-label" for="q4Option2" id="q4Option2Label">Time management</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question4" id="q4Option3" value="Adaptability">
-                    <label class="form-check-label" for="q4Option3">Adaptability</label>
+                    <label class="form-check-label" for="q4Option3" id="q4Option3Label">Adaptability</label>
                 </div>
-                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(3)">Previous</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(5)">Next</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(3)" id="prevButton4">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(5)" id="nextButton4">Next</button>
             </div>
 
             <!-- Swali 5 -->
             <div id="question5" class="question animated-question" style="display: none;">
-                <label class="text-dark font-weight-bold">5. What areas do you think I can improve on?</label>
+                <label class="text-dark font-weight-bold" id="q5Label">5. What areas do you think I can improve on?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question5" id="q5Option1" value="Public speaking" required>
-                    <label class="form-check-label" for="q5Option1">Public speaking</label>
+                    <label class="form-check-label" for="q5Option1" id="q5Option1Label">Public speaking</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question5" id="q5Option2" value="Technical skills">
-                    <label class="form-check-label" for="q5Option2">Technical skills</label>
+                    <label class="form-check-label" for="q5Option2" id="q5Option2Label">Technical skills</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="question5" id="q5Option3" value="Delegation">
-                    <label class="form-check-label" for="q5Option3">Delegation</label>
+                    <label class="form-check-label" for="q5Option3" id="q5Option3Label">Delegation</label>
                 </div>
-                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(4)">Previous</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="submitForm()">Submit</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(4)" id="prevButton5">Previous</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(7)" id="submitButton">Next</button>
             </div>
-        </form>
-
-        <!-- Sehemu ya kuonyesha majibu -->
-        <div id="results" class="mt-4" style="display: none;">
-            <h2 class="text-dark font-weight-bold">Your Answers:</h2>
-            <ul id="answersList"></ul>
-            <button class="btn btn-success" onclick="sendViaEmail()">Send via Email</button>
-            <button class="btn btn-success" onclick="sendViaWhatsApp()">Send via WhatsApp</button>
-        </div>
+            <!-- Swali 7 -->
+<div id="question7" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q7Label">7. What motivates me to do my best work?</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question7" id="q7Option1" value="Passion for the work" required>
+        <label class="form-check-label" for="q7Option1" id="q7Option1Label">Passion for the work</label>
     </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question7" id="q7Option2" value="Desire to succeed">
+        <label class="form-check-label" for="q7Option2" id="q7Option2Label">Desire to succeed</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question7" id="q7Option3" value="Team support">
+        <label class="form-check-label" for="q7Option3" id="q7Option3Label">Team support</label>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(6)" id="prevButton7">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(8)" id="nextButton7">Next</button>
+</div>
+
+            <!-- Swali 8 -->
+<div id="question8" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q8Label">8. How do I handle challenges?</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question8" id="q8Option1" value="I tackle them head-on" required>
+        <label class="form-check-label" for="q8Option1" id="q8Option1Label">I tackle them head-on</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question8" id="q8Option2" value="I analyze and plan a solution">
+        <label class="form-check-label" for="q8Option2" id="q8Option2Label">I analyze and plan a solution</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="question8" id="q8Option3" value="I seek advice from others">
+        <label class="form-check-label" for="q8Option3" id="q8Option3Label">I seek advice from others</label>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(7)" id="prevButton8">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(10)" id="nextButton8">Next</button>
+</div>
+<!-- Question 10: Multiple Answers with Checkboxes -->
+<div id="question10" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q10Label">
+        10. Which language should I learn to improve my communication? (Select all that apply)
+    </label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="question10" id="q10Option1" value="English">
+        <label class="form-check-label" for="q10Option1">English</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="question10" id="q10Option2" value="Spanish">
+        <label class="form-check-label" for="q10Option2">Spanish</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="question10" id="q10Option3" value="French">
+        <label class="form-check-label" for="q10Option3">French</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="question10" id="q10Option4" value="Mandarin">
+        <label class="form-check-label" for="q10Option4">Mandarin</label>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(9)" id="prevButton10">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(11)" id="nextButton10">Next</button>
+</div>
+
+
+<!-- Question 11: Text Input for Details -->
+<div id="question11" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q11Label">11. What challenges have you faced in your career development?</label>
+    <textarea class="form-control" id="q11Input" rows="4" placeholder="Enter your response here..." required></textarea>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(10)" id="prevButton11">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(12)" id="nextButton11">Next</button>
+</div>
+<!-- Question 12: Rating Question (Stars) -->
+<div id="question12" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q12Label">12. How satisfied are you with your current job?</label>
+    <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">&#9733;</label>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(11)" id="prevButton12">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(13)" id="nextButton12">Next</button>
+</div>
+<!-- Question 13: Date Input -->
+<div id="question13" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q13Label">13. When did you start your career in programming?</label>
+    <input type="date" class="form-control" id="q13Date" required>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(12)" id="prevButton13">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(14)" id="nextButton13">Next</button>
+</div>
+<!-- Question 14: Dropdown (Select one option) -->
+<div id="question14" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q14Label">14. What is your preferred method of learning?</label>
+    <select class="form-control" id="q14Select" required>
+        <option value="Online Courses">Online Courses</option>
+        <option value="Books">Books</option>
+        <option value="Workshops">Workshops</option>
+        <option value="Mentorship">Mentorship</option>
+    </select>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(13)" id="prevButton14">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="nextQuestion(15)" id="nextButton14">Next</button>
+</div>
+ <!-- Sehemu ya Maoni -->
+ <div id="question15" class="question animated-question" style="display: none;">
+    <label class="text-dark font-weight-bold" id="q6Label">6. Any additional comments or feedback?</label>
+    <textarea class="form-control" id="feedback" rows="4" placeholder="Enter your comments here..."></textarea>
+    <button type="button" class="btn btn-secondary mt-3" onclick="previousQuestion(14)" id="prevButton6">Previous</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="submitForm()" id="submitButton">Submit</button>
+</div>
+<!-- Final Page (Thank You Message) unda -->
+<div id="thankYouPage" class="question animated-question" style="display: none;">
+    <h2 class="text-center text-dark font-weight-bold">Thank you for completing the questionnaire!</h2>
+    <p class="text-center">Your responses have been successfully submitted. We appreciate your time and feedback.</p>
+</div>
+</form> 
+
+       <!-- Sehemu ya kuonyesha majibu -->
+<div id="results" class="mt-4" style="display: none;">
+    <h2 class="text-dark font-weight-bold text-center" id="resultsTitle">Your Answers:</h2>
+    <ul id="answersList" class="list-group mb-4"></ul>
+    <div class="d-flex justify-content-around">
+        <button class="btn btn-outline-success btn-lg" onclick="sendViaEmail()" id="emailButton">
+            Send via Email
+        </button>
+        <button class="btn btn-outline-success btn-lg" onclick="sendViaWhatsApp()" id="whatsappButton">
+            Send via WhatsApp
+        </button>
+    </div>
+</div>
+
 
     <!-- Modal ya kumaliza -->
     <div id="thankYouModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thank You!</h5>
+                    <h5 class="modal-title" id="modalTitle">Thank You!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Thank you for answering. You're welcome!</p>
+                    <h2 class="text-center text-dark font-weight-bold">Thank you for completing the questionnaire!</h2>
+                    <p class="text-center">Your responses have been successfully submitted. We appreciate your time and feedback.</p>
+                    <p id="modalMessage">Thank you for answering. You're welcome!</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeButton">Close</button>
                 </div>
             </div>
         </div>

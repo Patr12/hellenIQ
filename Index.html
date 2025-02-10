@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personality Questionnaire</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f2f4f8;
+    }
+
+    /* SPLASH SCREEN STYLES */
+    #splash {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      overflow: hidden;
+    }
+    .splash-content h1,
+    .splash-content h2 {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    .language-btn {
+      width: 180px;
+      margin: 10px;
+      padding: 15px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
+      transition: transform 0.3s ease;
+    }
+    .language-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* QUESTIONNAIRE CONTAINER */
+    #questionnaire {
+      padding: 30px 15px;
+    }
+
+    .progress {
+      height: 8px;
+      margin: 20px auto;
+      max-width: 800px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      transition: width 0.4s ease;
+    }
+
+    /* QUESTION CARD STYLES */
+    .question-card {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      margin: 20px auto;
+      max-width: 800px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .question-card.active-question {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card {
+      border: none;
+      margin-bottom: 20px;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+
+    /* Other Input for "Other" answer */
+    .other-input {
+      margin-left: 35px;
+      margin-top: 5px;
+      display: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 10px;
+    }
+
+    /* Navigation Buttons */
+    #prevBtn,
+    #nextBtn {
+      min-width: 120px;
+      margin: 0 10px;
+      border-radius: 30px;
+    }
+
+    /* Submission Screen */
+    #submitScreen {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div
+    id="splash"
+    class="text-center vh-100 d-flex flex-column justify-content-center"
+  >
+    <div class="splash-content">
+      <h1 class="mb-3">Welcome to the Interview Questionnaire</h1>
+      <h2 class="mb-4">Chagua Lugha / Choose Language</h2>
+      <div>
+        <button
+          onclick="setLanguage('sw')"
+          class="btn btn-light language-btn"
+        >
+          Kiswahili
+        </button>
+        <button
+          onclick="setLanguage('en')"
+          class="btn btn-light language-btn"
+        >
+          English
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Questionnaire Container -->
+  <div id="questionnaire" style="display: none;">
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        style="width: 0%;"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
+    </div>
+
+    <!-- Sehemu 1: Maswali 1-5 -->
+    <div class="question-card active-question" data-section="1">
+      <h3 data-i18n="section1"></h3>
+
+      <!-- Swali 1 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q1"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q1"
+              id="q1a"
+              value="a"
+            />
+            <label class="form-check-label" for="q1a" data-i18n="q1a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q1"
+              id="q1b"
+              value="b"
+            />
+            <label class="form-check-label" for="q1b" data-i18n="q1b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q1"
+              id="q1c"
+              value="c"
+            />
+            <label class="form-check-label" for="q1c" data-i18n="q1c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q1"
+              id="q1d"
+              value="d"
+            />
+            <label class="form-check-label" for="q1d" data-i18n="q1d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 2 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q2"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q2"
+              id="q2a"
+              value="a"
+            />
+            <label class="form-check-label" for="q2a" data-i18n="q2a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q2"
+              id="q2b"
+              value="b"
+            />
+            <label class="form-check-label" for="q2b" data-i18n="q2b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q2"
+              id="q2c"
+              value="c"
+            />
+            <label class="form-check-label" for="q2c" data-i18n="q2c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q2"
+              id="q2d"
+              value="d"
+            />
+            <label class="form-check-label" for="q2d" data-i18n="q2d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 3 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q3"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q3"
+              id="q3a"
+              value="a"
+            />
+            <label class="form-check-label" for="q3a" data-i18n="q3a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q3"
+              id="q3b"
+              value="b"
+            />
+            <label class="form-check-label" for="q3b" data-i18n="q3b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q3"
+              id="q3c"
+              value="c"
+            />
+            <label class="form-check-label" for="q3c" data-i18n="q3c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q3"
+              id="q3d"
+              value="d"
+            />
+            <label class="form-check-label" for="q3d" data-i18n="q3d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 4 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q4"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q4"
+              id="q4a"
+              value="a"
+            />
+            <label class="form-check-label" for="q4a" data-i18n="q4a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q4"
+              id="q4b"
+              value="b"
+            />
+            <label class="form-check-label" for="q4b" data-i18n="q4b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q4"
+              id="q4c"
+              value="c"
+            />
+            <label class="form-check-label" for="q4c" data-i18n="q4c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q4"
+              id="q4d"
+              value="d"
+            />
+            <label class="form-check-label" for="q4d" data-i18n="q4d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 5 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q5"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q5"
+              id="q5a"
+              value="a"
+            />
+            <label class="form-check-label" for="q5a" data-i18n="q5a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q5"
+              id="q5b"
+              value="b"
+            />
+            <label class="form-check-label" for="q5b" data-i18n="q5b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q5"
+              id="q5c"
+              value="c"
+            />
+            <label class="form-check-label" for="q5c" data-i18n="q5c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q5"
+              id="q5d"
+              value="d"
+            />
+            <label class="form-check-label" for="q5d" data-i18n="q5d"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sehemu 2: Maswali 6-8 -->
+    <div class="question-card" data-section="2">
+      <h3 data-i18n="section2"></h3>
+
+      <!-- Swali 6 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q6"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q6"
+              id="q6a"
+              value="a"
+            />
+            <label class="form-check-label" for="q6a" data-i18n="q6a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q6"
+              id="q6b"
+              value="b"
+            />
+            <label class="form-check-label" for="q6b" data-i18n="q6b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q6"
+              id="q6c"
+              value="c"
+            />
+            <label class="form-check-label" for="q6c" data-i18n="q6c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q6"
+              id="q6d"
+              value="d"
+            />
+            <label class="form-check-label" for="q6d" data-i18n="q6d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 7 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q7"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q7"
+              id="q7a"
+              value="a"
+            />
+            <label class="form-check-label" for="q7a" data-i18n="q7a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q7"
+              id="q7b"
+              value="b"
+            />
+            <label class="form-check-label" for="q7b" data-i18n="q7b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q7"
+              id="q7c"
+              value="c"
+            />
+            <label class="form-check-label" for="q7c" data-i18n="q7c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q7"
+              id="q7d"
+              value="d"
+            />
+            <label class="form-check-label" for="q7d" data-i18n="q7d"></label>
+          </div>
+          <!-- Option nyingine yenye "Other" -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q7"
+              id="q7e"
+              value="e"
+            />
+            <label class="form-check-label" for="q7e" data-i18n="q7e"></label>
+            <input
+              type="text"
+              class="form-control other-input"
+              id="q7other"
+              placeholder="Please specify..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 8 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q8"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q8"
+              id="q8a"
+              value="a"
+            />
+            <label class="form-check-label" for="q8a" data-i18n="q8a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q8"
+              id="q8b"
+              value="b"
+            />
+            <label class="form-check-label" for="q8b" data-i18n="q8b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q8"
+              id="q8c"
+              value="c"
+            />
+            <label class="form-check-label" for="q8c" data-i18n="q8c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q8"
+              id="q8d"
+              value="d"
+            />
+            <label class="form-check-label" for="q8d" data-i18n="q8d"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sehemu 3: Maswali 9-11 -->
+    <div class="question-card" data-section="3">
+      <h3 data-i18n="section3"></h3>
+
+      <!-- Swali 9 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q9"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q9"
+              id="q9a"
+              value="a"
+            />
+            <label class="form-check-label" for="q9a" data-i18n="q9a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q9"
+              id="q9b"
+              value="b"
+            />
+            <label class="form-check-label" for="q9b" data-i18n="q9b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q9"
+              id="q9c"
+              value="c"
+            />
+            <label class="form-check-label" for="q9c" data-i18n="q9c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q9"
+              id="q9d"
+              value="d"
+            />
+            <label class="form-check-label" for="q9d" data-i18n="q9d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 10 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q10"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q10"
+              id="q10a"
+              value="a"
+            />
+            <label class="form-check-label" for="q10a" data-i18n="q10a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q10"
+              id="q10b"
+              value="b"
+            />
+            <label class="form-check-label" for="q10b" data-i18n="q10b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q10"
+              id="q10c"
+              value="c"
+            />
+            <label class="form-check-label" for="q10c" data-i18n="q10c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q10"
+              id="q10d"
+              value="d"
+            />
+            <label class="form-check-label" for="q10d" data-i18n="q10d"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swali 11 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q11"></p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q11"
+              id="q11a"
+              value="a"
+            />
+            <label class="form-check-label" for="q11a" data-i18n="q11a"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q11"
+              id="q11b"
+              value="b"
+            />
+            <label class="form-check-label" for="q11b" data-i18n="q11b"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q11"
+              id="q11c"
+              value="c"
+            />
+            <label class="form-check-label" for="q11c" data-i18n="q11c"></label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="q11"
+              id="q11d"
+              value="d"
+            />
+            <label class="form-check-label" for="q11d" data-i18n="q11d"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maswali ya Hiari (12-13) -->
+    <div class="question-card" data-section="4">
+      <h3 data-i18n="section4"></h3>
+      <!-- Swali 12 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q12"></p>
+          <textarea class="form-control" id="q12" rows="3" placeholder="Type your answer here..."></textarea>
+        </div>
+      </div>
+      <!-- Swali 13 -->
+      <div class="card">
+        <div class="card-body">
+          <p class="question-text" data-i18n="q13"></p>
+          <textarea class="form-control" id="q13" rows="3" placeholder="Type your answer here..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="text-center mt-4">
+      <button id="prevBtn" class="btn btn-secondary" onclick="previousQuestion()">Previous</button>
+      <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <!-- Submission Screen -->
+  <div
+    id="submitScreen"
+    class="text-center vh-100 d-flex flex-column justify-content-center"
+    style="display: none;"
+  >
+    <h2 class="mb-4" data-i18n="submitTitle"></h2>
+    <button
+      onclick="submitViaEmail()"
+      class="btn btn-primary m-2"
+      data-i18n="emailBtn"
+    >Email</button>
+    <button
+      onclick="submitViaWhatsApp()"
+      class="btn btn-success m-2"
+      data-i18n="whatsappBtn"
+    >WhatsApp</button>
+  </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+          <p>&copy; 2025 Patrice S Mgala. All Rights Reserved.</p>
+          <div class="social-icons">
+            <!-- Badilisha URL hapa kulingana na profiles zako -->
+            <a href="https://wa.me/25571486409" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/Part12" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/yourusername" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/yourchannel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://t.me/@patricemgala" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </footer>
+
+  <script>
+    const translations = {
+      en: {
+        // Sections
+        section1: "Section 1: Personality & Demeanor",
+        section2: "Section 2: Strengths & Qualities",
+        section3: "Section 3: Inspiration & Impact",
+        section4: "Optional: Open-Ended Questions",
+
+        // Questions
+        q1: "How would you describe your general energy level?",
+        q1a: "a) Very high and enthusiastic",
+        q1b: "b) Moderately energetic",
+        q1c: "c) Calm and composed",
+        q1d: "d) Low energy/Reserved",
+
+        q2: "How do you typically approach new people or situations?",
+        q2a: "a) Open and outgoing",
+        q2b: "b) Friendly but cautious",
+        q2c: "c) Observant and thoughtful",
+        q2d: "d) Hesitant or withdrawn",
+
+        q3: "How would you describe your communication style?",
+        q3a: "a) Direct and assertive",
+        q3b: "b) Open and collaborative",
+        q3c: "c) Gentle and diplomatic",
+        q3d: "d) Quiet and reserved",
+
+        q4: "How would you rate your level of empathy?",
+        q4a: "a) Very empathetic and understanding",
+        q4b: "b) Moderately empathetic",
+        q4c: "c) Somewhat detached",
+        q4d: "d) Not very empathetic",
+
+        q5: "How do you typically handle stress or pressure?",
+        q5a: "a) Calm and collected",
+        q5b: "b) Generally manage well",
+        q5c: "c) Sometimes struggle",
+        q5d: "d) Often overwhelmed",
+
+        // Section 2
+        q6: "What do you think is your most noticeable positive trait?",
+        q6a: "a) Enthusiasm/Optimism",
+        q6b: "b) Intelligence/Wit",
+        q6c: "c) Kindness/Generosity",
+        q6d: "d) Determination/Resilience",
+
+        q7: "What skill or talent do you think you're best known for?",
+        q7a: "a) Communication/Public Speaking",
+        q7b: "b) Problem-solving/Analytical Skills",
+        q7c: "c) Creativity/Artistic Abilities",
+        q7d: "d) Leadership/Organizational Skills",
+        q7e: "e) Other:",
+
+        q8: "What quality do you think makes you unique?",
+        q8a: "a) Your sense of humor",
+        q8b: "b) Your perspective/insights",
+        q8c: "c) Your compassion/caring nature",
+        q8d: "d) Your drive/ambition",
+
+        // Section 3
+        q9: "How do you think you inspire others?",
+        q9a: "a) By motivating and encouraging them",
+        q9b: "b) By setting a good example",
+        q9c: "c) By offering support and guidance",
+        q9d: "d) By sharing your knowledge and expertise",
+
+        q10: "What kind of impact do you hope to have on the world?",
+        q10a: "a) To make a significant difference",
+        q10b: "b) To positively influence those around me",
+        q10c: "c) To leave a lasting legacy",
+        q10d: "d) To simply live a good and meaningful life",
+
+        q11: "What values do you try to embody in your daily life?",
+        q11a: "a) Honesty and integrity",
+        q11b: "b) Kindness and compassion",
+        q11c: "c) Hard work and dedication",
+        q11d: "d) Creativity and innovation",
+
+        // Open-Ended
+        q12: "What is one thing you think people might misunderstand about you?",
+        q13: "What is one thing you are most proud of?",
+
+        // Submission Screen
+        submitTitle: "Review & Submit Your Answers",
+        emailBtn: "Submit via Email",
+        whatsappBtn: "Submit via WhatsApp",
+      },
+      sw: {
+        // Sections
+        section1: "Sehemu ya 1: Tabia na Uhusika",
+        section2: "Sehemu ya 2: Nguvu na Sifa",
+        section3: "Sehemu ya 3: Ushawishi na Athari",
+        section4: "Hiari: Maswali ya Ziada",
+
+        // Questions
+        q1: "Unaweza kuelezea kiwango chako cha nishati?",
+        q1a: "a) Nyenyo na shauku",
+        q1b: "b) Nishati ya wastani",
+        q1c: "c) Tulivu na mwenye utulivu",
+        q1d: "d) Nishati ndogo/enyye kujitenga",
+
+        q2: "Unavyokabiliana na watu wapya au hali mpya?",
+        q2a: "a) Kwa ufungufu na ujasiri",
+        q2b: "b) Kwa ukaribu lakini mwangalifu",
+        q2c: "c) Kwa kutazama na kufikiria",
+        q2d: "d) Kwa kusita au kujiepusha",
+
+        q3: "Unaelezea mfumo wako wa mawasiliano?",
+        q3a: "a) Moja kwa moja na thabiti",
+        q3b: "b) Wazi na shirikishi",
+        q3c: "c) Polepole na kwa hekima",
+        q3d: "d) Kimya na mnyenyekevu",
+
+        q4: "Unafikiri kiwango chako cha huruma ni kiasi gani?",
+        q4a: "a) Nina huruma nyingi na kuelewa",
+        q4b: "b) Nina huruma kiasi",
+        q4c: "c) Nina msimamo wa kutojali",
+        q4d: "d) Sina huruma nyingi",
+
+        q5: "Unavyoshughulikia mfadhaiko au shinikizo?",
+        q5a: "a) Ninaendelea kwa utulivu",
+        q5b: "b) Naweshi kusimamia vyema",
+        q5c: "c) Wakati mwingine ninapata shida",
+        q5d: "d) Mara nyingi ninazidiwa",
+
+        // Section 2
+        q6: "Unadhani sifa yako chanya angavu zaidi ni ipi?",
+        q6a: "a) Shauku na matumaini",
+        q6b: "b) Akili na utani",
+        q6c: "c) Ukarimu na ukaribu",
+        q6d: "d) Uamuzi na uthubutu",
+
+        q7: "Unadhani ujuzi au talanta yako maarufu zaidi ni ipi?",
+        q7a: "a) Mawasiliano na hotuba",
+        q7b: "b) Kutatua matatizo na uchambuzi",
+        q7c: "c) Ubunifu na sanaa",
+        q7d: "d) Uongozi na upangaji",
+        q7e: "e) Nyingine:",
+
+        q8: "Unadhani sifa gani inakufanya uwe wa kipekee?",
+        q8a: "a) Ucheshi wako",
+        q8b: "b) Mtazamo wako na ufahamu",
+        q8c: "c) Huruma na ukaribu wako",
+        q8d: "d) Bidii na nia yako",
+
+        // Section 3
+        q9: "Unadhani unawavutia wengine vipi?",
+        q9a: "a) Kwa kuwaamsha na kuwatia moyo",
+        q9b: "b) Kwa kuwa mfano mzuri",
+        q9c: "c) Kwa kutoa msaada na mwongozo",
+        q9d: "d) Kwa kushiriki maarifa yako",
+
+        q10: "Unataka kuacha athari gani ulimwenguni?",
+        q10a: "a) Kutofautisha kwa kiasi kikubwa",
+        q10b: "b) Kuwaathiri vyema wale walionao",
+        q10c: "c) Kuacha urithi wa kudumu",
+        q10d: "d) Kuishi maisha yenye maana",
+
+        q11: "Thamani zipi unajaribu kuonyesha katika maisha yako?",
+        q11a: "a) Uwazi na uadilifu",
+        q11b: "b) Huruma na ukarimu",
+        q11c: "c) Bidii na juhudi",
+        q11d: "d) Ubunifu na uvumbuzi",
+
+        // Open-Ended
+        q12: "Kitu kimoja ambacho watu wanaweza kukuelewa vibaya?",
+        q13: "Kitu gani unachofahari zaidi?",
+
+        // Submission Screen
+        submitTitle: "Angalia na Wasilisha Majibu Yako",
+        emailBtn: "Tuma kwa Email",
+        whatsappBtn: "Tuma kwa WhatsApp",
+      },
+    };
+
+    // Initialize variables
+    let currentLang = 'en';
+    let currentQuestion = 0;
+    let answers = {};
+    const questionCards = Array.from(document.querySelectorAll('.question-card'));
+    const totalQuestions = questionCards.length;
+
+    // Event listeners for radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', (e) => {
+        const question = e.target.name;
+        const value = e.target.value;
+        answers[question] = value;
+
+        // Handle "Other" input for q7
+        if (question === 'q7') {
+          if (value === 'e') {
+            document.getElementById('q7other').style.display = 'block';
+          } else {
+            document.getElementById('q7other').style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // Handle "Other" text input
+    document.getElementById('q7other')?.addEventListener('input', (e) => {
+      answers.q7 = `e: ${e.target.value}`;
+    });
+
+    // Handle open-ended questions
+    document.querySelectorAll('textarea').forEach((textarea) => {
+      textarea.addEventListener('input', (e) => {
+        answers[e.target.id] = e.target.value;
+      });
+    });
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('questionnaire').style.display = 'block';
+      updateTranslations();
+      updateProgress();
+    }
+
+    function updateTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = translations[currentLang][key] || '';
+      });
+    }
+
+    function showQuestion(index) {
+      questionCards.forEach((card, i) => {
+        card.classList.toggle('active-question', i === index);
+      });
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+        updateProgress();
+      } else {
+        document.getElementById('questionnaire').style.display = 'none';
+        document.getElementById('submitScreen').style.display = 'flex';
+      }
+    }
+
+    function previousQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+        updateProgress();
+      }
+    }
+
+    function updateProgress() {
+      const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+      const progressBar = document.querySelector('.progress-bar');
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+      }
+    }
+
+    function compileAnswers() {
+      return Object.entries(answers)
+        .map(([q, a]) => `${translations[currentLang][q] || q}: ${a}`)
+        .join('\n\n');
+    }
+
+    function submitViaEmail() {
+      const body = compileAnswers();
+      // Tumia barua pepe yako kwenye 'mailto:'
+      const email = "mchomvhellen@gmail.com";
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+        translations[currentLang].submitTitle
+      )}&body=${encodeURIComponent(body)}`;
+    }
+
+    function submitViaWhatsApp() {
+      const text = compileAnswers();
+      // Kuondoa ishara ya '+' kwenye nambari ya simu kwa URL ya WhatsApp
+      window.open(`https://wa.me/255744724812?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  </script>
+</body>
+</html>

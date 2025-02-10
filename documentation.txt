@@ -1,0 +1,100 @@
+ "Software Documentation" kwa mradi wa **Interview Questionnaire**
+---
+Documentation ya Mradi: Interview Questionnaire
+
+1. Utangulizi  
+**Lengo la Mradi:**  
+Mradi huu umeundwa ili kutoa mfumo wa kuuliza maswali (questionnaire) kwa ajili ya mahojiano ya kazi, ambao unaruhusu mtumiaji kuchagua lugha (English au Kiswahili), kujibu maswali mbalimbali (radio buttons, checkboxes, textarea, date input, na select dropdown) na kisha kuonyesha na kusambaza majibu kwa njia tofauti (Email na WhatsApp).
+**Umuhimu wa Mradi:**  
+- Kuboresha mchakato wa kukusanya taarifa na maoni ya walengwa  
+- Kutoa uzoefu rahisi wa kujibu maswali kwa njia ya mtandao  
+- Kuwezesha usambazaji wa majibu kupitia njia mbalimbali kama Email na WhatsApp
+
+2. Mazingira na Mahitaji  
+2.1. Requirements za Mfumo  
+- **Frontend:**  
+  - HTML5, CSS3 (Bootstrap), JavaScript (ES6)  
+- **Backend:**  
+  - (Ikiwa mradi unahitaji kuhifadhi data, unaweza kutumia Node.js, Python, au lugha nyingine, lakini kwa mfano huu ni frontend-based tu.)
+- **Zingatia:**  
+  - Browser yenye uwezo wa kutekeleza JavaScript (Chrome, Firefox, Safari, n.k.)
+  - Muunganisho wa intaneti kwa ajili ya kutuma majibu kupitia Email/WhatsApp (ikiwa ni lazima)
+
+2.2. Dependencies  
+- **Bootstrap:** Kutumia Bootstrap kwa ajili ya uonekano mzuri na responsive design.  
+- **jQuery (optional):** Kama unatumia Bootstrap modals au wengine.  
+- **EmailJS (optional):** Kama mradi unahitaji kutuma majibu kupitia Email bila kutumia backend.
+
+3. Muundo wa Mradi (Architecture)  
+Mradi huu una sehemu kuu zifuatazo:
+- **Splash Page:** Inawaalika watumiaji kuchagua lugha.
+- **Main Questionnaire:** Sehemu ambapo maswali yote yanaonyeshwa kulingana na lugha iliyochaguliwa.
+- **Navigation Functions:** Functions za `nextQuestion()` na `previousQuestion()` zinahakikisha uratibu wa maswali.
+- **Form Submission:** Function `submitForm()` inakusanya majibu kutoka kwa maswali na kuyaonyesha katika sehemu ya "results".
+- **Distribution Functions:** Functions kama `sendViaEmail()` na `sendViaWhatsApp()` zinatumika kusambaza majibu kwa njia tofauti.
+
+4. Ufungaji na Usanidi (Installation & Setup)  
+4.1. Kupanua Mradi  
+- **Clone Repository (ikiwa mradi wako uko kwenye GitHub):**  
+  ```bash
+  git clone https://github.com/Patr12/hellenIQ.git
+  cd InterviewQuestionnaire
+  ```
+  
+4.2. Kuendesha Mradi  
+- **Kufungua faili:**  
+  - Fungua `index.html` katika browser yako.
+- **Kuhakikisha:**  
+  - Hakikisha kuwa Bootstrap CSS na JavaScript (pamoja na jQuery kama inahitajika) zimejumuishwa kwenye HTML yako.
+  
+4.3. Mabadiliko  
+- Ikiwa unahitaji kubadilisha maswali au lugha, unaweza kurekebisha functions `setEnglish()` na `setSwahili()` kwenye `scripts.js`.
+
+5. Matumizi (Usage)  
+1. **Kuanza:**  
+   - Fungua `index.html` kwenye browser.
+2. **Kuchagua Lugha:**  
+   - Mtumiaji anachagua lugha kupitia buttons kwenye Splash Page.
+3. **Kujibu Maswali:**  
+   - Maswali yanaonyeshwa moja baada ya nyingine. Tumia buttons za "Next" na "Previous" kusafiri kati ya maswali.
+4. **Kujumuisha Majibu:**  
+   - Baada ya kujibu maswali yote, mtumiaji anabofya "Submit" ili kuonyesha majibu katika sehemu ya "results".
+5. **Kusambaza Majibu:**  
+   - Buttons za "Send via Email" na "Send via WhatsApp" zinatumika kusambaza majibu.
+
+6. Maelezo ya Functions Muhimu  
+6.1. `selectLanguage(language)`  
+- Inavificha Splash Page na kuonyesha Main Questionnaire kulingana na lugha iliyochaguliwa.  
+- Inaita function `setEnglish()` au `setSwahili()` kulingana na value ya `language`.
+
+6.2. `setEnglish()` na `setSwahili()`  
+- Zinabadilisha maandishi ya maswali na answer options kulingana na lugha.
+  
+6.3. `nextQuestion(next)` na `previousQuestion(prev)`  
+- Zinasimamia uhamisho kati ya maswali.  
+- Zinaboresha uzoefu wa mtumiaji kwa kuweka maswali moja baada ya nyingine.
+
+6.4. `submitForm()`  
+- Inakusanya majibu kutoka kwa maswali yote, ikiwa ni pamoja na sehemu za checkboxes, textarea, date input, na dropdown.  
+- Inafanya display ya majibu katika sehemu ya "results" na inaweza kuonyesha modal ya shukrani.
+
+6.5. `sendViaEmail()` na `sendViaWhatsApp()`  
+- Zinachukua majibu na kuunda message inayofaa ili kutumwa kupitia Email na WhatsApp.
+  
+7. Usimamizi wa Toleo na Mchango  
+- **Toleo:**  
+  - Hakikisha unaweka mabadiliko yako kwenye GitHub kwa kutumia `git push origin main` baada ya kurekebisha code.
+- **Mchango:**  
+  - Ikiwa unataka kuchangia kwenye mradi huu, tafadhali fuata maelekezo ya `CONTRIBUTING.md` (ikiwa ipo) na tuma pull request zako.
+
+8. Maswali ya Mara kwa Mara (FAQ)  
+**Swali 1:** Nini kinatokea ikiwa mtumiaji haachagui lugha?  
+**Jibu:** Mtumiaji atabaki kwenye Splash Page mpaka aichague lugha.  
+  
+**Swali 2:** Je, ninaweza kubadilisha maswali?  
+**Jibu:** Ndiyo, unaweza kurekebisha functions za `setEnglish()` na `setSwahili()` ili kubadilisha maswali na majibu.
+
+**Swali 3:** Nifanye nini ikiwa nitapata error?  
+**Jibu:** Angalia console ya browser kwa maelezo ya error na hakikisha kuwa HTML yako ina element zinazolingana na selectors zilizotumiwa kwenye `scripts.js`.
+
+---

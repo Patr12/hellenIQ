@@ -1,0 +1,22 @@
+{
+    "name": "Patrice S. Mgala - Portfolio",
+    "short_name": "Patrice",
+    "description": "Personal website of Patrice S. Mgala, a Software Engineer specialized in Web & Mobile Development.",
+    "start_url": "/patrice.html",
+    "display": "standalone",
+    "background_color": "#f2f4f8",
+    "theme_color": "#2575fc",
+    "icons": [
+      {
+        "src": "icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

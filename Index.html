@@ -20,6 +20,8 @@
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #f2f4f8;
+      margin: 0;
+      padding: 0;
     }
 
     /* SPLASH SCREEN STYLES */
@@ -27,6 +29,13 @@
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: #fff;
       overflow: hidden;
+      position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease;
+  z-index: 1000;
     }
     .splash-content h1,
     .splash-content h2 {
@@ -48,8 +57,16 @@
     /* QUESTIONNAIRE CONTAINER */
     #questionnaire {
       padding: 30px 15px;
+      margin-top: 0;
+      display: none; /* Hifadhi mpaka splash ipofifike */
+      /* opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease 0.3s; */
     }
-
+    #questionnaire.show {
+  opacity: 1;
+  transform: translateY(0);
+}
     .progress {
       height: 8px;
       margin: 20px auto;
@@ -65,6 +82,7 @@
 
     /* QUESTION CARD STYLES */
     .question-card {
+      margin-top: 0;
       display: none;
       opacity: 0;
       transform: translateY(20px);
@@ -110,8 +128,28 @@
     /* Submission Screen */
     #submitScreen {
       background: #fff;
+      display: none; /* Hifadhi mpaka watumiaji wamefikia mwisho */
+    }
+    
+    /* Footer Styles */
+    footer.footer {
+      background: #fff;
+      padding: 20px 0;
+      margin-top: 40px;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+    footer.footer p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #777;
+    }
+    footer.footer .social-icons a {
+      margin: 0 5px;
+      color: #777;
+      font-size: 1.2em;
     }
   </style>
+
 </head>
 <body>
   <!-- Splash Screen -->
@@ -937,21 +975,108 @@
       },
     };
 
-    // Initialize variables
     let currentLang = 'en';
     let currentQuestion = 0;
     let answers = {};
+    // Kolekta vyote vya question cards katika array
     const questionCards = Array.from(document.querySelectorAll('.question-card'));
     const totalQuestions = questionCards.length;
 
-    // Event listeners for radio buttons
+    // Funksheni ya kusanidi lugha na kuonyesha questionnaire
+  function setLanguage(lang) {
+  currentLang = lang;
+  const splash = document.getElementById('splash');
+  
+  // Ongeza transition ya opacity ili kufanya fade-out
+  splash.style.transition = 'opacity 0.5s ease-out';
+  splash.style.opacity = '0';
+  
+  // Baada ya muda wa 0.5s (muda wa transition), funua splash na onesha questionnaire
+  setTimeout(() => {
+    splash.style.display = 'none';
+    document.getElementById('questionnaire').style.display = 'block';
+    // sukuma ukurasa juu wa maswli ya onekane juu 
+    window.scrollTo({ top: 0, behavior: 'smooth'});
+    updateTranslations();
+    updateProgress();
+  }, 500);
+}
+
+
+    // Kusasisha maandishi kulingana na lugha iliyochaguliwa
+    function updateTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = translations[currentLang][key] || '';
+      });
+    }
+
+    // Kuonyesha swali lililo katika index husika
+    function showQuestion(index) {
+      questionCards.forEach((card, i) => {
+        card.classList.toggle('active-question', i === index);
+      });
+    }
+
+    // Kusogeza swali linalofuata
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+        updateProgress();
+      } else {
+        // Ikiwa ni swali la mwisho, onyesha screen ya submission
+        document.getElementById('questionnaire').style.display = 'none';
+        document.getElementById('submitScreen').style.display = 'flex';
+      }
+    }
+
+    // Kusogeza swali la nyuma
+    function previousQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+        updateProgress();
+      }
+    }
+
+    // Kusasisha progress bar
+    function updateProgress() {
+      const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+      const progressBar = document.querySelector('.progress-bar');
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+      }
+    }
+
+    // Kusanyia majibu na kuunda mchujo wa maandishi ya submission
+    function compileAnswers() {
+      return Object.entries(answers)
+        .map(([q, a]) => `${translations[currentLang][q] || q}: ${a}`)
+        .join('\n\n');
+    }
+
+    // Kutuma majibu kupitia Email
+    function submitViaEmail() {
+      const body = compileAnswers();
+      const email = "mchomvhellen@gmail.com"; // Badilisha kwa barua pepe unayotaka
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(translations[currentLang].submitTitle)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // Kutuma majibu kupitia WhatsApp
+    function submitViaWhatsApp() {
+      const text = compileAnswers();
+      window.open(`https://wa.me/255744724812?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // Kusimamia majibu ya input na radio buttons
     document.querySelectorAll('input[type="radio"]').forEach((input) => {
       input.addEventListener('change', (e) => {
         const question = e.target.name;
         const value = e.target.value;
         answers[question] = value;
 
-        // Handle "Other" input for q7
+        // Ikiwa ni swali lenye chaguo la "Other" (mfano q7), onyesha input ya ziada
         if (question === 'q7') {
           if (value === 'e') {
             document.getElementById('q7other').style.display = 'block';
@@ -962,86 +1087,17 @@
       });
     });
 
-    // Handle "Other" text input
+    // Kusimamia input ya "Other" kwa q7
     document.getElementById('q7other')?.addEventListener('input', (e) => {
       answers.q7 = `e: ${e.target.value}`;
     });
 
-    // Handle open-ended questions
+    // Kusimamia maswali ya open-ended
     document.querySelectorAll('textarea').forEach((textarea) => {
       textarea.addEventListener('input', (e) => {
         answers[e.target.id] = e.target.value;
       });
     });
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('splash').style.display = 'none';
-      document.getElementById('questionnaire').style.display = 'block';
-      updateTranslations();
-      updateProgress();
-    }
-
-    function updateTranslations() {
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        el.textContent = translations[currentLang][key] || '';
-      });
-    }
-
-    function showQuestion(index) {
-      questionCards.forEach((card, i) => {
-        card.classList.toggle('active-question', i === index);
-      });
-    }
-
-    function nextQuestion() {
-      if (currentQuestion < totalQuestions - 1) {
-        currentQuestion++;
-        showQuestion(currentQuestion);
-        updateProgress();
-      } else {
-        document.getElementById('questionnaire').style.display = 'none';
-        document.getElementById('submitScreen').style.display = 'flex';
-      }
-    }
-
-    function previousQuestion() {
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion(currentQuestion);
-        updateProgress();
-      }
-    }
-
-    function updateProgress() {
-      const progress = ((currentQuestion + 1) / totalQuestions) * 100;
-      const progressBar = document.querySelector('.progress-bar');
-      if (progressBar) {
-        progressBar.style.width = `${progress}%`;
-      }
-    }
-
-    function compileAnswers() {
-      return Object.entries(answers)
-        .map(([q, a]) => `${translations[currentLang][q] || q}: ${a}`)
-        .join('\n\n');
-    }
-
-    function submitViaEmail() {
-      const body = compileAnswers();
-      // Tumia barua pepe yako kwenye 'mailto:'
-      const email = "mchomvhellen@gmail.com";
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(
-        translations[currentLang].submitTitle
-      )}&body=${encodeURIComponent(body)}`;
-    }
-
-    function submitViaWhatsApp() {
-      const text = compileAnswers();
-      // Kuondoa ishara ya '+' kwenye nambari ya simu kwa URL ya WhatsApp
-      window.open(`https://wa.me/255744724812?text=${encodeURIComponent(text)}`, '_blank');
-    }
   </script>
 </body>
 </html>

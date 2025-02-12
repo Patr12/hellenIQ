@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- AOS Library for animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2575fc">
+
   <style>
     /* Global Styles */
     body {
@@ -194,6 +197,32 @@
     .dark-mode .nav-link {
       color: #ccc;
     }
+    #chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#chat-box {
+    
+    position: fixed;
+    bottom: 70px;
+    right: 50px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    display: none;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
   </style>
 </head>
 <body>
@@ -247,6 +276,10 @@
           <p>
             I strive to create innovative, responsive, and user-friendly digital solutions adaptable to any screen size.
           </p>
+            <!-- Button ya kupakua Resume -->
+        <a href="Patrice_Resume.pdf" class="btn btn-outline-secondary mt-3" download>
+            <i class="fas fa-download"></i> Download Resume
+          </a>
         </div>
       </div>
     </div>
@@ -256,6 +289,10 @@
   <section id="skills">
     <div class="container" data-aos="fade-up">
       <h2 class="text-center mb-5">My Skills</h2>
+       <!-- Canvas ya live chart -->
+    <div class="mb-5" style="position: relative; height:400px; width:100%;">
+        <canvas id="skillsChart"></canvas>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <h4>Web Development</h4>
@@ -353,6 +390,76 @@
       </div>
     </div>
   </section>
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center mb-4">What Clients Say</h2>
+      <!-- Mfano wa Carousel ya Bootstrap -->
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <blockquote class="blockquote">
+              <p class="mb-4">Patrice is an exceptional developer who delivers on time and exceeds expectations.</p>
+              <footer class="blockquote-footer">Client A</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote">
+              <p class="mb-4">His work in both web and mobile development is top-notch and innovative.</p>
+              <footer class="blockquote-footer">Client B</footer>
+            </blockquote>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Timeline / Resume Section -->
+  <section id="timeline" class="py-5" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center mb-5">My Journey</h2>
+      <ul class="timeline">
+        <li>
+          <h5>2023 - Present</h5>
+          <p>Software Engineer at XYZ Company</p>
+        </li>
+        <li>
+          <h5>2021 - 2023</h5>
+          <p>Mobile Developer at ABC Studio</p>
+        </li>
+        <!-- Ongeza hatua nyingine za timeline -->
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Blog / Articles Section -->
+  <section id="blog" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center mb-5">Latest Articles</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="blog1.jpg" class="card-img-top" alt="Blog Post 1">
+            <div class="card-body">
+              <h5 class="card-title">How to Build a Responsive Website</h5>
+              <p class="card-text">An overview of responsive design principles using modern frameworks.</p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Ongeza blog posts nyingine -->
+      </div>
+    </div>
+  </section>
+  
 
   <!-- Contact Section -->
   <section id="contact">
@@ -395,6 +502,15 @@
         <a href="https://t.me/yourusername" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
       </div>
     </div>
+    <div id="chatbot-container">
+        <button id="chatbot-btn" onclick="toggleChat()">💬 Chat</button>
+        <div id="chat-box">
+            <div id="chat-messages"></div>
+            <input type="text" id="user-input" placeholder="Andika hapa..." />
+            <button onclick="sendMessage()">Tuma</button>
+        </div>
+    </div>
+    
   </footer>
 
   <!-- Dark Mode Toggle (Optional) -->
@@ -406,6 +522,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS JS for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // Initialize AOS animations
     AOS.init({
@@ -457,6 +574,62 @@
       responseDiv.innerHTML = '<div class="alert alert-success">Thank you for your message. I will get back to you soon!</div>';
       contactForm.reset();
     });
+
+      // Kuandaa data ya chart yako
+  const ctx = document.getElementById('skillsChart').getContext('2d');
+  const skillsChart = new Chart(ctx, {
+    type: 'doughnut', // Unaweza kubadilisha aina ya chart (e.g., bar, radar, doughnut)
+    data: {
+      labels: ['Web Development', 'Mobile Development', 'Backend (Django)', 'Testing'],
+      datasets: [{
+        data: [90, 80, 85, 75], // Thamani za skills zako
+        backgroundColor: ['#2575fc', '#6a11cb', '#ff7f50', '#20b2aa'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log("Service Worker Registered"));
+}
+function toggleChat() {
+    let chatBox = document.getElementById("chat-box");
+    chatBox.style.display = chatBox.style.display === "block" ? "none" : "block";
+}
+
+function sendMessage() {
+    let userInput = document.getElementById("user-input").value;
+    let chatBox = document.getElementById("chat-box");
+
+    let userMessage = `<p><strong>Wewe:</strong> ${userInput}</p>`;
+    chatBox.innerHTML += userMessage;
+
+    let botResponse = getBotResponse(userInput);
+    let botMessage = `<p><strong>Bot:</strong> ${botResponse}</p>`;
+    chatBox.innerHTML += botMessage;
+
+    document.getElementById("user-input").value = "";
+}
+
+function getBotResponse(input) {
+    let responses = {
+        "Habari": "Habari! Unahitaji msaada gani?",
+        "Jina lako nani?": "Mimi ni chatbot wako wa interview.",
+        "Nisaidie kuhusu interview": "Tafadhali angalia sehemu ya maswali ya interview kwenye website."
+    };
+    return responses[input] || "Samahani, siwezi kuelewa. Tafadhali jaribu tena.";
+}
+
+
   </script>
 </body>
 </html>

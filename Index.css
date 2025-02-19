@@ -1,0 +1,38 @@
+
+        .splash-screen {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            height: 100vh;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+        
+        .question-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            display: none;
+        }
+        
+        .active-section {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .question-card {
+            transition: transform 0.3s ease;
+        }
+        .question-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.5s ease; }
+    

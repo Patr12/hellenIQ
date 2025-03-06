@@ -1,0 +1,567 @@
+
+=============================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personality Questionnaire</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Font Awesome for Social Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="Index.css">
+</head>
+<body>
+  
+  <!-- Splash Screen -->
+  <div class="splash-screen d-flex flex-column justify-content-center align-items-center fade-in" id="splashPage">
+    <div class="text-center">
+      <h1 class="display-4 mb-4">🍃 Karibu kwenye Ukaguzi wa Personaliti</h1>
+      <p class="lead mb-5">Chagua lugha unayopendelea</p>
+      <button class="btn btn-light btn-lg mx-2" onclick="setLanguage('sw')">Kiswahili</button>
+      <button class="btn btn-light btn-lg mx-2" onclick="setLanguage('en')">English</button>
+    </div>
+  </div>
+
+  <!-- Questionnaire -->
+  <div class="container py-5 animated-background" id="questionnaire" style="display: none;">
+    <!-- Progress Bar -->
+    <div class="progress mb-4">
+      <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+    </div>
+
+    <!-- Sehemu za Maswali -->
+    <div class="question-section active-section fade-in" data-section="1">
+      <h3 data-i18n="section1">Sehemu 1: Tabia na Mwenendo</h3>
+      <!-- Swali 1 -->
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q1">1. Unaelezea mwenyewe kama mtu:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q1" id="q1a" value="a">
+            <label class="form-check-label" for="q1a" data-i18n="q1a">Mwenye kuvutwa na mazingira</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q1" id="q1b" value="b">
+            <label class="form-check-label" for="q1b" data-i18n="q1b">Mwenye mawazo makubwa</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="2">
+      <h3 data-i18n="section2">Sehemu 2: Ushirikiano na Watu</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q2">2. Unapenda kufanya nini wakati wa starehe?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q2" id="q2a" value="a">
+            <label class="form-check-label" for="q2a" data-i18n="q2a">Kusoma vitabu</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q2" id="q2b" value="b">
+            <label class="form-check-label" for="q2b" data-i18n="q2b">Kutembelea marafiki</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="3">
+      <h3 data-i18n="section3">Sehemu 3: Fikra na Mawazo</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q3">3. Unapataje msaada unapokumbwa na shida?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q3" id="q3a" value="a">
+            <label class="form-check-label" for="q3a" data-i18n="q3a">Naomba msaada kwa marafiki</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q3" id="q3b" value="b">
+            <label class="form-check-label" for="q3b" data-i18n="q3b">Najitahidi mwenyewe</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="4">
+      <h3 data-i18n="section4">Sehemu 4: Matumaini na Malengo</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q4">4. Je, unafikiriaje kuhusu malengo yako ya maisha?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q4" id="q4a" value="a">
+            <label class="form-check-label" for="q4a" data-i18n="q4a">Ninajua malengo yangu vizuri</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q4" id="q4b" value="b">
+            <label class="form-check-label" for="q4b" data-i18n="q4b">Sijui malengo yangu bado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="5">
+      <h3 data-i18n="section5">Sehemu 5: Habari Zaidi Kuhusu Wewe</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q5">5. Unapenda kufanya kazi na nani?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q5" id="q5a" value="a">
+            <label class="form-check-label" for="q5a" data-i18n="q5a">Nashirikiana na watu wengi</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q5" id="q5b" value="b">
+            <label class="form-check-label" for="q5b" data-i18n="q5b">Nashirikiana na watu wachache tu</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="6">
+      <h3 data-i18n="section6">Sehemu 6: Kuishi na Maisha ya Kila Siku</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q6">6. Unapokutana na changamoto kubwa, unachukua hatua gani?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q6" id="q6a" value="a">
+            <label class="form-check-label" for="q6a" data-i18n="q6a">Najiandaa na mipango ya muda mrefu</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q6" id="q6b" value="b">
+            <label class="form-check-label" for="q6b" data-i18n="q6b">Najaribu kutatua kwa haraka</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="7">
+      <h3 data-i18n="section7">Sehemu 7: Mtindo wa Maisha</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q7">7. Je, unapendelea mazingira ya kifahari au ya asili?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q7" id="q7a" value="a">
+            <label class="form-check-label" for="q7a" data-i18n="q7a">Nahitaji mazingira ya kifahari</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q7" id="q7b" value="b">
+            <label class="form-check-label" for="q7b" data-i18n="q7b">Napendelea mazingira ya asili</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="8">
+      <h3 data-i18n="section8">Sehemu 8: Upendo na Mahusiano</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q8">8. Je, unathamini nini zaidi kwenye uhusiano?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q8" id="q8a" value="a">
+            <label class="form-check-label" for="q8a" data-i18n="q8a">Uaminifu na uhusiano wa karibu</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q8" id="q8b" value="b">
+            <label class="form-check-label" for="q8b" data-i18n="q8b">Uhuru na nafasi ya kibinafsi</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="9">
+      <h3 data-i18n="section9">Sehemu 9: Mtazamo wa Maisha</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q9">9. Je, unapenda kufanya nini baada ya muda mrefu?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q9" id="q9a" value="a">
+            <label class="form-check-label" for="q9a" data-i18n="q9a">Kutumia muda na familia yangu</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q9" id="q9b" value="b">
+            <label class="form-check-label" for="q9b" data-i18n="q9b">Kupata changamoto mpya</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="10">
+      <h3 data-i18n="section10">Sehemu 10: Tabia ya Kuchanganya</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q10">10. Je, unapendelea kufanya kazi na mtu mmoja au kundi?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q10" id="q10a" value="a">
+            <label class="form-check-label" for="q10a" data-i18n="q10a">Mtu mmoja</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q10" id="q10b" value="b">
+            <label class="form-check-label" for="q10b" data-i18n="q10b">Kundi</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="11">
+      <h3 data-i18n="section11">Sehemu 11: Kazi na Malengo</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q11">11. Je, unathamini nini zaidi kwenye kazi yako?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q11" id="q11a" value="a">
+            <label class="form-check-label" for="q11a" data-i18n="q11a">Ufanisi na mafanikio</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q11" id="q11b" value="b">
+            <label class="form-check-label" for="q11b" data-i18n="q11b">Kutunza usawa na maisha binafsi</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="12">
+      <h3 data-i18n="section12">Sehemu 12: Uwezo wa Kukabiliana</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q12">12. Je, unachukua hatua gani baada ya kushindwa kwenye jambo?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q12" id="q12a" value="a">
+            <label class="form-check-label" for="q12a" data-i18n="q12a">Najiinua na kujitahidi tena</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q12" id="q12b" value="b">
+            <label class="form-check-label" for="q12b" data-i18n="q12b">Najiweka mbali na changamoto hizo</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="13">
+      <h3 data-i18n="section13">Sehemu 13: Kupata Furaha</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q13">13. Je, unapata furaha kupitia nini?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q13" id="q13a" value="a">
+            <label class="form-check-label" for="q13a" data-i18n="q13a">Kujifunza vitu vipya</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q13" id="q13b" value="b">
+            <label class="form-check-label" for="q13b" data-i18n="q13b">Kutumikia wengine</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="14">
+      <h3 data-i18n="section14">Sehemu 14: Ukufunzi na Mabadiliko</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q14">14. Je, unapenda kuwaongoza wengine?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q14" id="q14a" value="a">
+            <label class="form-check-label" for="q14a" data-i18n="q14a">Ndio, nafurahi kutoa miongozo</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q14" id="q14b" value="b">
+            <label class="form-check-label" for="q14b" data-i18n="q14b">Hapana, napenda kuwa na uhuru wangu</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-section" data-section="15">
+      <h3 data-i18n="section15">Sehemu 15: Ufanisi na Juhudi</h3>
+      <div class="card mb-3 question-card">
+        <div class="card-body">
+          <p class="fw-bold" data-i18n="q15">15. Je, unathamini vipi juhudi zako katika kazi?</p>
+          <textarea class="form-control" rows="3" id="q15-answer" name="q15" data-i18n="q15placeholder"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation and Submit Button -->
+    <div class="mt-4">
+      <button class="btn btn-secondary" onclick="previousSection()" data-i18n="prev">Nyuma</button>
+      <span class="mx-2" data-i18n="progressText">Swali <span id="currentQuestion">1</span> kati ya 15</span>
+      <button class="btn btn-primary float-end" onclick="nextSection()" data-i18n="next">Endelea</button>
+      <button class="btn btn-success float-end me-2" onclick="submitAnswers()">Tuma Majibu</button>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2025 PatriceTech. All Rights Reserved.</p>
+      <div class="social-icons">
+        <a href="https://wa.me/25571486409" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://github.com/Patr12" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/YourProfile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/YourUsername" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/channel/@Patricemgala" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://t.me/255718486409" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Global answers object to store responses
+    let answers = {};
+
+    const translations = {
+      sw: {
+        section1: "Sehemu 1: Tabia na Mwenendo",
+        section2: "Sehemu 2: Ushirikiano na Watu",
+        section3: "Sehemu 3: Fikra na Mawazo",
+        section4: "Sehemu 4: Matumaini na Malengo",
+        section5: "Sehemu 5: Habari Zaidi Kuhusu Wewe",
+        section6: "Sehemu 6: Kuishi na Maisha ya Kila Siku",
+        section7: "Sehemu 7: Mtindo wa Maisha",
+        section8: "Sehemu 8: Upendo na Mahusiano",
+        section9: "Sehemu 9: Mtazamo wa Maisha",
+        section10: "Sehemu 10: Tabia ya Kuchanganya",
+        section11: "Sehemu 11: Kazi na Malengo",
+        section12: "Sehemu 12: Uwezo wa Kukabiliana",
+        section13: "Sehemu 13: Kupata Furaha",
+        section14: "Sehemu 14: Ukufunzi na Mabadiliko",
+        section15: "Sehemu 15: Ufanisi na Juhudi",
+
+        q1: "1. Unaelezea mwenyewe kama mtu:",
+        q1a: "Mwenye kuvutwa na mazingira",
+        q1b: "Mwenye mawazo makubwa",
+
+        q2: "2. Unapenda kufanya nini wakati wa starehe?",
+        q2a: "Kusoma vitabu",
+        q2b: "Kutembelea marafiki",
+
+        q3: "3. Unapataje msaada unapokumbwa na shida?",
+        q3a: "Naomba msaada kwa marafiki",
+        q3b: "Najitahidi mwenyewe",
+
+        q4: "4. Je, unafikiriaje kuhusu malengo yako ya maisha?",
+        q4a: "Ninajua malengo yangu vizuri",
+        q4b: "Sijui malengo yangu bado",
+
+        q5: "5. Unapenda kufanya kazi na nani?",
+        q5a: "Nashirikiana na watu wengi",
+        q5b: "Nashirikiana na watu wachache tu",
+
+        q6: "6. Unapokutana na changamoto kubwa, unachukua hatua gani?",
+        q6a: "Najiandaa na mipango ya muda mrefu",
+        q6b: "Najaribu kutatua kwa haraka",
+
+        q7: "7. Je, unapendelea mazingira ya kifahari au ya asili?",
+        q7a: "Nahitaji mazingira ya kifahari",
+        q7b: "Napendelea mazingira ya asili",
+
+        q8: "8. Je, unathamini nini zaidi kwenye uhusiano?",
+        q8a: "Uaminifu na uhusiano wa karibu",
+        q8b: "Uhuru na nafasi ya kibinafsi",
+
+        q9: "9. Je, unapenda kufanya nini baada ya muda mrefu?",
+        q9a: "Kutumia muda na familia yangu",
+        q9b: "Kupata changamoto mpya",
+
+        q10: "10. Je, unapendelea kufanya kazi na mtu mmoja au kundi?",
+        q10a: "Mtu mmoja",
+        q10b: "Kundi",
+
+        q11: "11. Je, unathamini nini zaidi kwenye kazi yako?",
+        q11a: "Ufanisi na mafanikio",
+        q11b: "Kutunza usawa na maisha binafsi",
+
+        q12: "12. Je, unachukua hatua gani baada ya kushindwa kwenye jambo?",
+        q12a: "Najiinua na kujitahidi tena",
+        q12b: "Najiweka mbali na changamoto hizo",
+
+        q13: "13. Je, unapata furaha kupitia nini?",
+        q13a: "Kujifunza vitu vipya",
+        q13b: "Kutumikia wengine",
+
+        q14: "14. Je, unapenda kuwaongoza wengine?",
+        q14a: "Ndio, nafurahi kutoa miongozo",
+        q14b: "Hapana, napenda kuwa na uhuru wangu",
+
+        q15: "15. Je, unathamini vipi juhudi zako katika kazi?",
+        q15placeholder: "Andika jawabu lako hapa...",
+
+        prev: "Nyuma",
+        next: "Endelea",
+        progressText: "Swali <span id='currentQuestion'>1</span> kati ya 15"
+      },
+      en: {
+        section1: "Section 1: Behavior & Demeanor",
+        section2: "Section 2: Social Interactions",
+        section3: "Section 3: Thoughts & Ideas",
+        section4: "Section 4: Hopes & Goals",
+        section5: "Section 5: More About You",
+        section6: "Section 6: Daily Living",
+        section7: "Section 7: Lifestyle",
+        section8: "Section 8: Love & Relationships",
+        section9: "Section 9: Life Perspective",
+        section10: "Section 10: Teamwork Preferences",
+        section11: "Section 11: Work & Goals",
+        section12: "Section 12: Coping Ability",
+        section13: "Section 13: Sources of Happiness",
+        section14: "Section 14: Leadership & Change",
+        section15: "Section 15: Efficiency & Effort",
+
+        q1: "1. You would describe yourself as:",
+        q1a: "Environmentally conscious",
+        q1b: "Big thinker",
+
+        q2: "2. What do you enjoy doing when you want to relax?",
+        q2a: "Reading books",
+        q2b: "Visiting friends",
+
+        q3: "3. How do you seek help when faced with difficulty?",
+        q3a: "I ask friends for help",
+        q3b: "I try to solve it myself",
+
+        q4: "4. How do you think about your life goals?",
+        q4a: "I know my goals very well",
+        q4b: "I’m still figuring out my goals",
+
+        q5: "5. Who do you prefer to work with?",
+        q5a: "With many people",
+        q5b: "With a few people",
+
+        q6: "6. When facing a big challenge, what do you do?",
+        q6a: "I prepare with long-term plans",
+        q6b: "I try to solve it quickly",
+
+        q7: "7. Do you prefer a luxurious or a natural environment?",
+        q7a: "Luxurious",
+        q7b: "Natural",
+
+        q8: "8. What do you value most in a relationship?",
+        q8a: "Loyalty and close connection",
+        q8b: "Independence and personal space",
+
+        q9: "9. What do you prefer to do after a long break?",
+        q9a: "Spend time with family",
+        q9b: "Seek new challenges",
+
+        q10: "10. Do you prefer working with one person or in a group?",
+        q10a: "One person",
+        q10b: "Group",
+
+        q11: "11. What do you value most in your work?",
+        q11a: "Efficiency and success",
+        q11b: "Work-life balance",
+
+        q12: "12. How do you respond after failing at something?",
+        q12a: "I pick myself up and try again",
+        q12b: "I avoid those challenges",
+
+        q13: "13. What brings you happiness?",
+        q13a: "Learning new things",
+        q13b: "Helping others",
+
+        q14: "14. Do you enjoy leading others?",
+        q14a: "Yes, I enjoy guiding",
+        q14b: "No, I prefer my freedom",
+
+        q15: "15. How do you value your effort in work?",
+        q15placeholder: "Write your response here...",
+
+        prev: "Previous",
+        next: "Next",
+        progressText: "Question <span id='currentQuestion'>1</span> of 15"
+      }
+    };
+
+    let currentSection = 0;
+    const totalSections = 15;
+
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+      updateText(language);
+      document.getElementById('splashPage').style.display = 'none';
+      document.getElementById('questionnaire').style.display = 'block';
+      nextSection();
+    }
+
+    // Update all text based on language
+    function updateText(language) {
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.getAttribute("data-i18n");
+        if (translations[language][key]) {
+          element.innerHTML = translations[language][key];
+        }
+      });
+    }
+
+    function nextSection() {
+      if (currentSection < totalSections) {
+        currentSection++;
+        document.querySelectorAll(".question-section").forEach(section => {
+          section.classList.remove("active-section");
+        });
+        const nextSec = document.querySelector(`.question-section[data-section='${currentSection}']`);
+        if (nextSec) {
+          nextSec.classList.add("active-section");
+        }
+        document.querySelector("#currentQuestion").textContent = currentSection;
+        document.querySelector(".progress-bar").style.width = (currentSection / totalSections) * 100 + "%";
+      }
+    }
+
+    function previousSection() {
+      if (currentSection > 1) {
+        currentSection--;
+        document.querySelectorAll(".question-section").forEach(section => {
+          section.classList.remove("active-section");
+        });
+        const prevSec = document.querySelector(`.question-section[data-section='${currentSection}']`);
+        if (prevSec) {
+          prevSec.classList.add("active-section");
+        }
+        document.querySelector("#currentQuestion").textContent = currentSection;
+        document.querySelector(".progress-bar").style.width = (currentSection / totalSections) * 100 + "%";
+      }
+    }
+
+    // Kusimamia majibu ya radio buttons na textarea
+    document.querySelectorAll('input[type="radio"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const question = e.target.name;
+        const value = e.target.value;
+        answers[question] = value;
+      });
+    });
+
+    document.querySelectorAll("textarea").forEach((textarea) => {
+      textarea.addEventListener("input", (e) => {
+        answers[e.target.name] = e.target.value;
+      });
+    });
+
+    function submitAnswers() {
+      // Tumia majibu yaliyohifadhiwa kwenye global "answers"
+      const emailBody = encodeURIComponent(`Answers:\n\n${JSON.stringify(answers, null, 2)}`);
+      const emailSubject = encodeURIComponent("Personality Test Answers");
+      const emailLink = `mailto:mchomvhellen@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+      const whatsappMessage = encodeURIComponent(`Answers: ${JSON.stringify(answers, null, 2)}`);
+      const whatsappLink = `https://wa.me/?text=${whatsappMessage}`;
+
+      window.location.href = emailLink;
+      window.open(whatsappLink, '_blank');
+    }
+  </script>
+
+</body>
+</html>

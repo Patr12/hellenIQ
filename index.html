@@ -292,13 +292,13 @@
         questions: [
           {
             type: "checkbox",
-            question: "Which words describe me? (Select up to 3)",
+            question: "Q1: Which words describe me? (Select up to 3)",
             options: ["Kind", "Hardworking", "Funny", "Intelligent", "Reserved", "Outgoing", "Honest", "Independent"],
             max: 3
           },
           {
             type: "dropdown",
-            question: "What is the most noticeable trait about me?",
+            question: "Q2: What is the most noticeable trait about me?",
             options: [
               "Confidence and leadership skills",
               "Sense of humor",
@@ -308,11 +308,12 @@
               "Patience and understanding",
               "Other"
             ],
-            other: true
+            other: true,
+            required: true
           },
           {
             type: "dropdown",
-            question: "What is something I do that people easily remember?",
+            question: "Q3: What is something I do that people easily remember?",
             options: [
               "The way I express myself",
               "My acts of kindness or support",
@@ -321,11 +322,12 @@
               "My honesty",
               "Other"
             ],
-            other: true
+            other: true,
+            required: true,
           },
           {
             type: "dual-checkbox",
-            question: "Which traits best describe both my strengths and weaknesses?",
+            question: "Q4: Which traits best describe both my strengths and weaknesses?",
             sections: [
               {
                 title: "Strengths (Choose up to 2)",
@@ -350,11 +352,12 @@
                 max: 2
               }
             ],
-            other: true
+            other: true,
+            required: true,
           },
           {
             type: "checkbox",
-            question: "How have I potentially inspired you?",
+            question: "Q5: How have I potentially inspired you?",
             options: [
               "Demonstrating perseverance",
               "Showing new way of thinking",
@@ -363,19 +366,23 @@
               "Setting positive example",
               "Not inspired"
             ],
-            other: true
+            other: true,
+            required: true,
           },
           {
             type: "textarea",
-            question: "In what areas do you think I excel?"
+            question: "Q6: In what areas do you think I excel?",
+            required: false,
           },
           {
             type: "textarea",
-            question: "In what areas do you think I should improve?"
+            question: "Q7: In what areas do you think I should improve?",
+            required: false,
           },
           {
             type: "textarea",
-            question: "Anything else you would like to share?"
+            question: "Q8: Anything else you would like to share?",
+            required: false,
           }
         ],
         prev: "Previous",
@@ -396,13 +403,14 @@
         questions: [
           {
             type: "checkbox",
-            question: "Ni maneno gani yanakufafanua? (Chagua hadi 3)",
+            question: "Q1: Ni maneno gani yanakufafanua? (Chagua hadi 3)",
             options: ["Mwenye huruma", "Mwenye bidii", "Mcheshi", "Mwenye akili", "Mnyenyekevu", "Mwenye mshikamano", "Mwaminifu", "Mwenye kujitegemea"],
-            max: 3
+            max: 3,
+            required: true
           },
           {
             type: "dropdown",
-            question: "Ni sifa gani inanigawia zaidi?",
+            question: "Q2: Ni sifa gani inanigawia zaidi?",
             options: [
               "Ujasiri na uongozi",
               "Ucheshi na kuburudisha",
@@ -412,11 +420,12 @@
               "Uvumilivu na uelewa",
               "Nyingine"
             ],
-            other: true
+            other: true,
+            required: true
           },
           {
             type: "dropdown",
-            question: "Kitu gani ninachofanya ambacho hutukumbuka kwa urahisi?",
+            question: "Q3: Kitu gani ninachofanya ambacho hutukumbuka kwa urahisi?",
             options: [
               "Njia ninavyojieleza",
               "Matendo ya huruma",
@@ -425,11 +434,12 @@
               "Uwazi na uaminifu",
               "Nyingine"
             ],
-            other: true
+            other: true,
+            required: true
           },
           {
             type: "dual-checkbox",
-            question: "Ni sifa zipi zinainifafanua kwa nguvu na udhaifu?",
+            question: "Q4: Ni sifa zipi zinainifafanua kwa nguvu na udhaifu?",
             sections: [
               {
                 title: "Nguvu (Chagua hadi 2)",
@@ -454,11 +464,12 @@
                 max: 2
               }
             ],
-            other: true
+            other: true,
+            required: true
           },
           {
             type: "checkbox",
-            question: "Umehamasishwaje na mimi?",
+            question: "Q5: Umehamasishwaje na mimi?",
             options: [
               "Kuonyesha uvumilivu",
               "Kuonyesha njia mpya",
@@ -467,19 +478,23 @@
               "Kuwa mfano mzuri",
               "Sijihamisishwa"
             ],
-            other: true
+            other: true,
+            required: true
           },
           {
             type: "textarea",
-            question: "Je, ninatofautiana kwa vipi?"
+            question: "Q6: Je, ninatofautiana kwa vipi?",
+            required: false,
           },
           {
             type: "textarea",
-            question: "Je, ninapaswa kuboresha katika nyanja zipi?"
+            question: "Q7: Je, ninapaswa kuboresha katika nyanja zipi?",
+            required: false,
           },
           {
             type: "textarea",
-            question: "Je, kuna kitu kingine ungependa kushiriki?"
+            question: "Q8: Je, kuna kitu kingine ungependa kushiriki?",
+            required: false,
           }
         ],
         prev: "Nyuma",

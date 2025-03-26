@@ -339,7 +339,7 @@
         questions: [
           {
             type: "checkbox",
-            question: "Q1: Ni maneno gani yanakufafanua? (Chagua hadi 3)",
+            question: "Q1: Ni Sifa gani Zinanielezea mimi? (Chagua hadi 3)",
             options: ["Mwenye huruma", "Mwenye bidii", "Mcheshi", "Mwenye akili", "Mnyenyekevu", "Mwenye mshikamano", "Mwaminifu", "Mwenye kujitegemea"],
             max: 3,
             required: true
@@ -489,7 +489,7 @@
             .join("");
         } else if (q.type === "dropdown") {
           html += `<select class="form-select mb-3" name="q${index}">
-                    <option value="">-- Select an option --</option>`;
+                    <option value="">--Chaguo chaguo moja--</option>`;
           html += q.options.map((opt) => `<option value="${opt}">${opt}</option>`).join("");
           html += `</select>`;
         } else if (q.type === "dual-checkbox") {
